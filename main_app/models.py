@@ -1,6 +1,6 @@
 from django.db import models
 
-class Comments(models.Model):
+class Comment(models.Model):
     body_text = models.CharField(max_length=1000)
     name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)

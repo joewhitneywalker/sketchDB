@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
-from .models import Comments
+from .models import Comment
 
 
 # Create your views here.
@@ -16,16 +16,16 @@ class Home(TemplateView):#home page, when you sign in you land here
 class Intro(TemplateView): #intro page that lets you learn about how to use app. may want to switch this to be the landing page later
     template_name = "intro.html"
 
-
+#CLASS NAMES MUST BE UPPERCASE
 class Comments(TemplateView):
     template_name= "comments.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["comments"] = Comments.objects.all() # Here we are using the model to query the database for us.
+        context["comments"] = Comment.objects.all() # Here we are using the model to query the database for us.
         return context
 
-        
+
 
 #DOES LIBRARY NEED TO BE ITS OWN MODEL?
 #FAKEABASE
@@ -43,7 +43,7 @@ library = [
     Library('A0001', 'BOTTOMS', 'FALL 23', '10/22/22'),
 ]
     
-class my_library(TemplateView):
+class My_Library(TemplateView):
     template_name = 'my_library.html'
 
     def get_context_data(self, **kwargs):
@@ -51,6 +51,8 @@ class my_library(TemplateView):
         context["library"] = library 
         return context
 
+        
+#model has to be singular, class has to be uppercase
 
 
 
