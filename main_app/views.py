@@ -7,16 +7,26 @@ from .models import Comment
 
 
 # Create your views here.
-
+#HOME VIEW
 class Home(TemplateView):#home page, when you sign in you land here
     template_name = "home.html"
+    
+#UPLOADING FUNCTION
+def upload(request):    
+        if request.method == 'POST':
+            uploaded_file = request.FILES['document']
+            print(uploaded_file.name)
+            print(uploaded_file.size)
+        return render(request, 'upload.html')
+    
 
 
-
+#INTRO VIEW
 class Intro(TemplateView): #intro page that lets you learn about how to use app. may want to switch this to be the landing page later
+ 
     template_name = "intro.html"
 
-#CLASS NAMES MUST BE UPPERCASE
+#COMMENTS VIEW
 class Comments(TemplateView):
     template_name= "comments.html"
 
@@ -24,6 +34,15 @@ class Comments(TemplateView):
         context = super().get_context_data(**kwargs)
         context["comments"] = Comment.objects.all() # Here we are using the model to query the database for us.
         return context
+
+    
+    
+
+
+    
+
+
+
 
 
 
