@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="{% static 'styles/styles.css'%}" />
     <title>{% block title %}{% endblock %}</title>
 </head>
+<form>
+  <div>
+    <input type="text" name="name" placeholder="SEARCH"/>
+            <input type="submit" value="ENTER"/>
+        </div>
+        <a href="{% url 'home' %}">CLEAR SEARCH</a>
+  </div>
+</form>
 <body>
   {% block content %}  
 
