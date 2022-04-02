@@ -4,20 +4,23 @@ from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Comment
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
 #HOME VIEW
 class Home(TemplateView):#home page, when you sign in you land here
     template_name = "home.html"
-    
+
 #UPLOADING FUNCTION
-def upload(request):    
+def upload(request): 
+        context = {}   
         if request.method == 'POST':
             uploaded_file = request.FILES['document']
-            print(uploaded_file.name)
-            print(uploaded_file.size)
-        return render(request, 'upload.html')
+            fs = FileSystemStorage()
+            name = fs.save(uploaded_file.name, uploaded_file)
+            context['url'] = fs.url(name)     
+        return render(request, 'upload.html', context)
     
 
 
