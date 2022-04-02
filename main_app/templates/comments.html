@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% for comments in comments %}
+    <p> {{comments.body_text}}</p>
+    <p>Created By: {{comments.name}}</p>
+    <p>Date Created: {{comments.created_at}}</p>
+    
+    {% endfor %}
+{% endblock %}

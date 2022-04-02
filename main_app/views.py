@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
+from .models import Comments
 
 
 # Create your views here.
@@ -16,6 +17,17 @@ class Intro(TemplateView): #intro page that lets you learn about how to use app.
     template_name = "intro.html"
 
 
+class Comments(TemplateView):
+    template_name= "comments.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["comments"] = Comments.objects.all() # Here we are using the model to query the database for us.
+        return context
+
+        
+
+#DOES LIBRARY NEED TO BE ITS OWN MODEL?
 #FAKEABASE
 class Library:
     def __init__(self, file_name, category, season, date_created, ):
