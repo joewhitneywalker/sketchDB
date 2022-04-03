@@ -10,6 +10,9 @@ urlpatterns = [
     path('library/', views.My_Library.as_view(), name="my_library"),
     path('comments/', views.Comments.as_view(), name="comments"),
     path('upload/', views.upload, name="upload"),
+    path('files/', views.file_list, name="file_list"),
+    path('files/upload', views.file_upload, name="file_upload"),
+
 
 
 

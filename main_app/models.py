@@ -19,7 +19,7 @@ class File(models.Model):
     file_name = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
-    pdf = models.FileField(upload_to='sketchdb')
+    pdf = models.FileField(upload_to='files/pdfs')#should this actually be the name of by db?
 
     def __str__(self):
         return self.file_name
