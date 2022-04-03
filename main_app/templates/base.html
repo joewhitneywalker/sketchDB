@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- we can put any cdns, scripts, or css here -->
+    <link rel="stylesheet" href="{% static 'styles/styles.css'%}" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<form>
+  <div>
+    <input type="text" name="name" placeholder="SEARCH"/>
+            <input type="submit" value="ENTER"/>
+        </div>
+        <a href="{% url 'home' %}">CLEAR SEARCH</a>
+  </div>
+</form>
+<body>
+  {% block content %}  
+
+  {% endblock %}
+</body>
+</html>

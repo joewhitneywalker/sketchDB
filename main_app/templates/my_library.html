@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>MY LIBRARY:</h1>
+    <hr></hr>
+    <h3>FAVORITES:</h3>
+    {% for library in library %}
+    <p>File Name: {{library.file_name}}</p>
+    <p>Category: {{library.category}}</p>
+    <p>Season: {{library.season}}</p>
+    <p>Date Created: {{library.date_created}}</p>
+    
+    {% endfor %}
+{% endblock %}
