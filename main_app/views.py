@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Comment
 from django.core.files.storage import FileSystemStorage
-
+from .forms import FileForm
 
 # Create your views here.
 #HOME VIEW
@@ -21,6 +21,17 @@ def upload(request):
             name = fs.save(uploaded_file.name, uploaded_file)
             context['url'] = fs.url(name)     
         return render(request, 'upload.html', context)
+
+#FILE LIST FUNCTION
+def file_list(request):
+    return render(request, 'file_list.html')
+
+#FILE UPLOAD
+def file_upload(request):
+    form = FileForm()
+    return render(request, 'file_upload.html', { 'form' : form})
+    
+    
     
 
 
