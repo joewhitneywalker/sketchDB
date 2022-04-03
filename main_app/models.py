@@ -13,6 +13,13 @@ class Comment(models.Model):
         ordering = ['created_at'] #try using minus to get descending 
 
 
-
-
 # Create your models here.
+
+class File(models.Model):
+    file_name = models.CharField(max_length=100)
+    created_by = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    pdf = models.FileField(upload_to='sketchdb')
+
+    def __str__(self):
+        return self.file_name
