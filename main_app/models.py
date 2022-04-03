@@ -22,6 +22,7 @@ class File(models.Model):
     pdf = models.FileField(upload_to='files/pdfs')#should this actually be the name of by db?
     season = models.CharField(max_length=4, default='FA20', editable=True)
     category = models.CharField(max_length=25, default='OUTERWEAR', editable=True)
-    
+    comments = models.CharField(max_length=5000, default="COMMENTS REQUIRED", editable=True)
+
     def __str__(self):
         return self.file_name
