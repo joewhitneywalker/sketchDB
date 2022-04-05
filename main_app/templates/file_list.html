@@ -7,4 +7,35 @@ ALL FILES
 
 {% block content %}
 <h1>ALL FILES</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>PREVIEW</th>
+            <th>FILE NAME</th>
+            <th>CATEGORY</th>
+            <th>SEASON</th>
+            <th>CREATED BY</th>
+            <th>DOWNLOAD</th>
+        </tr>
+    </thead>
+    <tboday>
+        {% for file in files %}
+        <tr>
+            <td>{% if file.preview %}
+                    <img src="{{ file.preview.url }}" alt="{{ file.file_name }}" style="width:100px;">
+                {% else %} 
+                    <span>NO PREVIEW</span>   
+                {% endif %}
+            </td>
+            <td>{{file.file_name}}</td>
+            <td>{{file.category}}</td>
+            <td>{{file.season}}</td>
+            <td>{{file.created_by}}</td>
+            <td>{{file.pdf}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
+

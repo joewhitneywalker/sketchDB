@@ -6,6 +6,8 @@ from django.views.generic.base import TemplateView
 from .models import Comment
 from django.core.files.storage import FileSystemStorage
 from .forms import FileForm
+from .models import File
+from django.shortcuts import redirect
 
 # Create your views here.
 #HOME VIEW
@@ -24,14 +26,21 @@ def upload(request):
 
 #FILE LIST FUNCTION
 def file_list(request):
-    return render(request, 'file_list.html')
+    files = File.objects.all()
+    return render(request, 'file_list.html', { 'files' : files })
 
-#FILE UPLOAD
+#FILE UPLOAD #getting required bug from this 
 def file_upload(request):
-    form = FileForm()
-    return render(request, 'file_upload.html', { 'form' : form})
+    if request.method == 'POST':
+        form = FileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('file_list')#redirects to list of files
+    else:
+        form = FileForm()
+    return render(request, 'file_upload.html', { 'form' : form })
     
-    
+
     
 
 
