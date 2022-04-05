@@ -24,6 +24,7 @@ ALL FILES
             <th>SEASON</th>
             <th>CREATED BY</th>
             <th>DOWNLOAD</th>
+            <th>DELETE</th>
         </tr>
     </thead>
     <tboday>
@@ -42,6 +43,12 @@ ALL FILES
             <td>
                 <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
                 </a>
+            </td>
+            <td>
+                <form method="post" action="{% url 'delete_file' file.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
+                </form>
             </td>
         </tr>
         {% endfor %}

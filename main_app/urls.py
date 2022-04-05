@@ -14,6 +14,7 @@ urlpatterns = [
     path('files/upload', views.file_upload, name="file_upload"),
     path('class/files/', views.FileListView.as_view(), name='class_file_list'),#for class based file list
     path('class/files/upload/', views.UploadFileView.as_view(), name='class_file_upload'),
+    path('files/<int:pk>/', views.delete_file, name="delete_file"), 
     
 
 
