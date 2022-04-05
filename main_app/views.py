@@ -7,6 +7,10 @@ from .models import Comment
 from django.core.files.storage import FileSystemStorage
 from .forms import FileForm
 from .models import File
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
+
+
 
 
 # Create your views here.
@@ -39,7 +43,20 @@ def file_upload(request):
     else:
         form = FileForm()
     return render(request, 'file_upload.html', { 'form' : form })
-    
+
+#CLASS FILE LIST
+class FileListView(ListView):
+    model = File
+    template_name = 'class_file_list.html'
+    context_object_name = 'files'
+
+#CLASS FILE UPLOAD
+class UploadFileView(CreateView):
+    model = File
+    form_class = FileForm
+    success_url = reverse_lazy('class_file_list')
+    template_name = 'file_upload.html'
+
 
     
 

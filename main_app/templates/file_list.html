@@ -6,11 +6,14 @@ ALL FILES
 {% endblock %}
 
 {% block content %}
-<h1>ALL FILES</h1>
 
-<p>
-    <a href="{% url 'file_upload' %}" class="btn btn-primary">UPLOAD A FILE</a>
-</p>
+{% block content_header %}
+    <h1>ALL FILES</h1>
+
+    <p>
+        <a href="{% url 'file_upload' %}" class="btn btn-primary">UPLOAD A FILE</a>
+    </p>
+{% endblock %}
 
 <table class="table mb-0">
     <thead>
