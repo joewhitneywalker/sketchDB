@@ -8,7 +8,11 @@ ALL FILES
 {% block content %}
 <h1>ALL FILES</h1>
 
-<table class="table">
+<p>
+    <a href="{% url 'file_upload' %}" class="btn btn-primary">UPLOAD A FILE</a>
+</p>
+
+<table class="table mb-0">
     <thead>
         <tr>
             <th>PREVIEW</th>
@@ -32,7 +36,10 @@ ALL FILES
             <td>{{file.category}}</td>
             <td>{{file.season}}</td>
             <td>{{file.created_by}}</td>
-            <td>{{file.pdf}}</td>
+            <td>
+                <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

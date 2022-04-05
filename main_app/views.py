@@ -1,5 +1,5 @@
 from dbm.ndbm import library
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
 from django.views.generic.base import TemplateView
@@ -7,7 +7,7 @@ from .models import Comment
 from django.core.files.storage import FileSystemStorage
 from .forms import FileForm
 from .models import File
-from django.shortcuts import redirect
+
 
 # Create your views here.
 #HOME VIEW
