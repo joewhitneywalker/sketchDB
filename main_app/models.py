@@ -29,3 +29,9 @@ class File(models.Model):
 
     def __str__(self):
         return self.file_name
+
+    def delete(self, *args, **kwargs):
+        self.pdf.delete()
+        self.preview.delete()
+        super().delete(*args, **kwargs)
+        
