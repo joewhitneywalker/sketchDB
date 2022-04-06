@@ -10,9 +10,7 @@ ALL FILES
 {% block content_header %}
     <h1>ALL FILES</h1>
 
-    <p>
-        <a href="{% url 'file_upload' %}" class="btn btn-primary">UPLOAD A FILE</a>
-    </p>
+  
 {% endblock %}
 
 <table class="table mb-0">
@@ -54,5 +52,9 @@ ALL FILES
         {% endfor %}
     </tbody>
 </table>
+<hr>
+<p>
+    <a href="{% url 'file_upload' %}" class="btn btn-primary">UPLOAD A FILE</a>
+</p>
 {% endblock %}
 

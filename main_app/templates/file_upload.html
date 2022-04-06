@@ -8,7 +8,7 @@ FILE UPLOAD
 {% endblock %}
 
 {% block content %}
-<h1>FILE UPLOAD</h1>
+<h3>FILE UPLOAD</h3>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
