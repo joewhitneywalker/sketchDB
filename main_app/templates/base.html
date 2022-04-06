@@ -10,15 +10,24 @@
     <link rel="stylesheet" href="{% static 'styles/styles.css'%}" />
     <title>{% block title %}{% endblock %}</title>
 </head>
-<form>
-  <div>
-    <input type="text" name="name" placeholder="SEARCH"/>
-            <input type="submit" value="ENTER"/>
-        </div>
-        <a href="{% url 'home' %}">CLEAR SEARCH</a>
-  </div>
-</form>
+
 <body>
+   <nav>
+     <a href="/">HOME</a>
+     <a href="/intro">INTRO</a>
+     <a href="/class/files">FILES</a>
+     <a href="/comments">COMMENTS</a>
+     <a href="/files/upload">UPLOAD A FILE</a>
+   </nav>
+
+   <form>
+    <div>
+      <input type="text" name="file_name" placeholder="SEARCH"/>
+              <input type="submit" value="ENTER"/>
+          </div>
+          <a href="{% url 'class_file_list' %}">CLEAR SEARCH</a>
+    </div>
+  </form>
   {% block content %}  
 
   {% endblock %}

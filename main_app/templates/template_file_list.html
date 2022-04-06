@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-HOME
+ALL FILES
 {% endblock %}
 
 {% block content %}
-
-{% block content_header %}
-    <h1>HOME</h1>
-{% endblock %}
-
-<hr></hr>
-
-<h3>RECENT FILES</h3>
+<form>
+    <div>
+        <!-- searches for the file name -->
+        <input type="text" name="name" placeholder="name"/>
+        <input type="submit" value="Search"/>
+    </div>
+    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
+    <a href="{% url 'template_file_list' %}">Clear Search</a>
+</form>
 
 <table class="table mb-0">
     <thead>
