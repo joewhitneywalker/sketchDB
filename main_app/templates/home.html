@@ -1,10 +1,57 @@
-
 {% extends 'base.html' %}
 
 {% block title %}
-SketchDB Home
+HOME
 {% endblock %}
 
 {% block content %}
-<h1>HOME</h1>
+
+{% block content_header %}
+    <h3>HOME</h3>
 {% endblock %}
+
+<hr></hr>
+
+<h3>RECENT FILES</h3>
+
+<table class="table mb-0">
+    <thead>
+        <tr>
+            <th>PREVIEW</th>
+            <th>FILE NAME</th>
+            <th>CATEGORY</th>
+            <th>SEASON</th>
+            <th>CREATED BY</th>
+            <th>DOWNLOAD</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tboday>
+        {% for file in files %}
+        <tr>
+            <td>{% if file.preview %}
+                    <img src="{{ file.preview.url }}" alt="{{ file.file_name }}" style="width:100px;">
+                {% else %} 
+                    <span class="text-muted">NO PREVIEW</span>   
+                {% endif %}
+            </td>
+            <td>{{file.file_name}}</td>
+            <td>{{file.category}}</td>
+            <td>{{file.season}}</td>
+            <td>{{file.created_by}}</td>
+            <td>
+                <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
+                </a>
+            </td>
+            <td>
+                <form method="post" action="{% url 'delete_file' file.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
