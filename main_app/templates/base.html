@@ -10,14 +10,18 @@
     <link rel="stylesheet" href="{% static 'styles/styles.css'%}" />
     <title>{% block title %}{% endblock %}</title>
 </head>
-   <form>
-    <div>
-      <input type="text" name="file_name" placeholder="SEARCH"/>
-              <input type="submit" value="ENTER"/>
-          </div>
-          <a href="{% url 'class_file_list' %}">CLEAR SEARCH</a>
-    </div>
-  </form>
+
+<header>
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-stagrt">
+      <form>
+        <div class="form=group">
+          <input type="text" name="file_name" placeholder="SEARCH"/>
+                  <input type="submit" value="ENTER"/><a href="{% url 'class_file_list' %}"></a>
+      </form>
+</header>
+<hr>
+  
 
 
    <div class="container-fluid">
