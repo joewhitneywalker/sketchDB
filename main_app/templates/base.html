@@ -11,16 +11,28 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 
-<header>
+<div class="container-fluid">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-stagrt">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0">
+        <li><a href="/" class="nav-link px-2 link-secondary " style="color: grey; font-weight: bold; ;">SKETCHDB</a></li>
+      </ul>
+      
       <form>
-        <div class="form=group">
-          <input type="text" name="file_name" placeholder="SEARCH"/>
-                  <input type="submit" value="ENTER"/><a href="{% url 'class_file_list' %}"></a>
-      </form>
+      <div class="d-flex flex-wrap align-items-center justify-content-center">
+        <input type="text" name="file_name" placeholder="SEARCH"/>
+                <input type="submit" value="ENTER"/><a href="{% url 'class_file_list' %}"></a>
+    </form>
+      </ul>
+
+     
+    </div>
+    
+  </div>
+ 
 </header>
-<hr>
+</div>
+
   
 
 
