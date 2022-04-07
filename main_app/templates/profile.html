@@ -12,7 +12,9 @@ HOME
     <h3 style="text-transform: uppercase;">{{ username }}'S RECENT FILES:</h3>
 {% endblock %}
 
+
 <hr></hr>
+
 
 <h3>RECENT FILES</h3>
 
@@ -46,10 +48,6 @@ HOME
                 </a>
             </td>
             <td>
-                <form method="post" action="{% url 'delete_file' file.pk %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
-                </form>
             </td>
         </tr>
         {% endfor %}

@@ -27,7 +27,7 @@ class File(models.Model):
     category = models.CharField(max_length=25, default='OUTERWEAR', editable=True)
     comments = models.CharField(max_length=5000, default="COMMENTS REQUIRED", editable=True)
     preview = models.ImageField(upload_to='files/previews/', null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.file_name
