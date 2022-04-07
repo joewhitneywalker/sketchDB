@@ -128,7 +128,7 @@ def delete_file(request, pk):
     if request.method == 'POST':
         file = File.objects.get(pk=pk)
         file.delete()
-    return redirect('file_list')
+    return HttpResponseRedirect('/class/files')
 
 
 
