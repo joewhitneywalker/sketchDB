@@ -53,7 +53,7 @@ def signup_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect('/class/files')
+    return HttpResponseRedirect('/intro')
 
 
 def login_view(request):
