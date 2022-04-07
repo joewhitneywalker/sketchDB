@@ -2,7 +2,7 @@ from dbm.ndbm import library
 from pipes import Template
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Comment
 from django.core.files.storage import FileSystemStorage
@@ -11,6 +11,12 @@ from .models import File
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.urls import reverse
 
 
 # Create your views here.
@@ -21,6 +27,7 @@ class Home(TemplateView):#home page, when you sign in you land here
   
 
 #USER FUNCION
+@login_required
 def profile(request, username):
     user = User.objects.get(username=username)
     files = File.objects.filter(user=user)
@@ -28,20 +35,49 @@ def profile(request, username):
 
 
 
+#django auth
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            print('HEY', user.username)
+            return HttpResponseRedirect('/user/'+str(user))
+        else:
+            HttpResponse('<h1>Try Again</h1>')
+            return HttpResponseRedirect('/login')
+    else:
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form})
 
-#UPLOADING FUNCTION
-'''
-def upload(request): 
-        context = {}   
-        if request.method == 'POST':
-            uploaded_file = request.FILES['document']
-            fs = FileSystemStorage()
-            name = fs.save(uploaded_file.name, uploaded_file)
-            context['url'] = fs.url(name)     
-        return render(request, 'upload.html', context)
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/class/files')
 
-'''
-     
+
+def login_view(request):
+     # if post, then authenticate (user submitted username and password)
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        # form = LoginForm(request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            user = authenticate(username = u, password = p)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/user/'+u)
+                else:
+                    print('The account has been disabled.')
+            else:
+                print('The username and/or password is incorrect.')
+    else: # it was a get request so send the emtpy login form
+        # form = LoginForm()
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form}) 
+
         
 #CLASS FILE LIST
 class FileListView(ListView):
@@ -65,15 +101,16 @@ class FileListView(ListView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        return HttpResponseRedirect('/files')
+        return HttpResponseRedirect('/class/files')
 
    
 
 #FILE LIST FUNCTION
-
+'''
 def file_list(request):
     files = File.objects.all()
     return render(request, 'file_list.html', { 'files' : files })
+'''
 
 #FILE UPLOAD #getting required bug from this 
 def file_upload(request):
