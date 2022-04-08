@@ -2,7 +2,7 @@ from dbm.ndbm import library
 from pipes import Template
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic.base import TemplateView
 from .models import Comment
 from django.core.files.storage import FileSystemStorage
@@ -10,8 +10,13 @@ from .forms import FileForm
 from .models import File
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
-
-
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.urls import reverse
 
 
 # Create your views here.
@@ -21,39 +26,56 @@ class Home(TemplateView):#home page, when you sign in you land here
     #come back to this if i want home page to render a list, it will need to have same logic as list view
   
 
+#USER FUNCION
+@login_required
+def profile(request, username):
+    user = User.objects.get(username=username)
+    files = File.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'files': files})
 
 
 
-#UPLOADING FUNCTION
-'''
-def upload(request): 
-        context = {}   
-        if request.method == 'POST':
-            uploaded_file = request.FILES['document']
-            fs = FileSystemStorage()
-            name = fs.save(uploaded_file.name, uploaded_file)
-            context['url'] = fs.url(name)     
-        return render(request, 'upload.html', context)
-
-'''
-
-
-#CLASS FILE LIST WITH TEMPLATE VIEW 
-'''
-class FileList(TemplateView):
-    template_name = "template_file_list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        file_name = self.request.GET.get("file_name")
-        if file_name != None:
-            context["files"] = File.objects.filter(name__icontains=file_name)#filters name 
-            context["header"] = f"Searching for {file_name}"
+#django auth
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            print('HEY', user.username)
+            return HttpResponseRedirect('/user/'+str(user))
         else:
-            context['files'] = File.objects.all()
-            context["header"] = ""
-        return context
-'''        
+            return render(request, 'signup.html', {'form': form})
+
+    else:
+        form = UserCreationForm()
+        return render(request, 'signup.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/intro')
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            user = authenticate(username = u, password = p)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/user/'+u)
+                else:
+                    return render(request, 'login.html', {'form': form})
+            else:
+                return render(request, 'login.html', {'form': form})
+        else: 
+            return render(request, 'signup.html', {'form': form})
+    else:
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
         
 #CLASS FILE LIST
 class FileListView(ListView):
@@ -73,13 +95,20 @@ class FileListView(ListView):
             context["header"] = "ALL FILES"
         return context
 
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/class/files')
+
    
 
 #FILE LIST FUNCTION
-
+'''
 def file_list(request):
     files = File.objects.all()
     return render(request, 'file_list.html', { 'files' : files })
+'''
 
 #FILE UPLOAD #getting required bug from this 
 def file_upload(request):
@@ -97,10 +126,7 @@ def delete_file(request, pk):
     if request.method == 'POST':
         file = File.objects.get(pk=pk)
         file.delete()
-    return redirect('file_list')
-
-
-
+    return HttpResponseRedirect('/class/files')
 
 #CLASS FILE UPLOAD
 class UploadFileView(CreateView):

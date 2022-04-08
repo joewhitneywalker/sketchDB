@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block title %}
-ALL FILES
+HOME
 {% endblock %}
 
 {% block content %}
-<form>
-    <div>
-        <!-- searches for the file name -->
-        <input type="text" name="name" placeholder="name"/>
-        <input type="submit" value="Search"/>
-    </div>
-    <!-- this a tag will redirect back to catlist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
-    <a href="{% url 'template_file_list' %}">Clear Search</a>
-</form>
+
+{% block content_header %}
+    <h3 style="text-transform: uppercase;">{{ username }}'S RECENT FILES:</h3>
+{% endblock %}
+
+
+<hr></hr>
+
+
+<h3>RECENT FILES</h3>
 
 <table class="table mb-0">
     <thead>
@@ -45,10 +48,6 @@ ALL FILES
                 </a>
             </td>
             <td>
-                <form method="post" action="{% url 'delete_file' file.pk %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
-                </form>
             </td>
         </tr>
         {% endfor %}

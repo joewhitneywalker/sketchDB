@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Comment(models.Model):
     body_text = models.CharField(max_length=1000)
@@ -26,6 +27,7 @@ class File(models.Model):
     category = models.CharField(max_length=25, default='OUTERWEAR', editable=True)
     comments = models.CharField(max_length=5000, default="COMMENTS REQUIRED", editable=True)
     preview = models.ImageField(upload_to='files/previews/', null=True, blank=True)
+    user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.file_name
@@ -34,4 +36,13 @@ class File(models.Model):
         self.pdf.delete()
         self.preview.delete()
         super().delete(*args, **kwargs)
-        
+
+'''
+class User(models.Model):
+    email = models.EmailField('email address')
+    user_name = models.CharField(max_length=100)
+    password = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+'''
