@@ -8,16 +8,15 @@ from .models import Comment
 from django.core.files.storage import FileSystemStorage
 from .forms import FileForm
 from .models import File
-from django.views.generic import ListView, CreateView
-from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.urls import reverse
-from django.views.generic import DetailView
+
 
 
 # Create your views here.
@@ -102,7 +101,7 @@ class FileListView(ListView):
         self.object.save()
         return HttpResponseRedirect('/class/files')
 
-
+#CLASS FILE DETAIL VIEW
 class FileDetail(DetailView):
     model = File
     template_name = "class_file_detail.html"
@@ -126,14 +125,25 @@ class FileDetail(DetailView):
         self.object.save()
         return HttpResponseRedirect('/class/files')
 
+#CLASS FILE UPDATE VIEW
+class FileUpdate(UpdateView):
+    model = File
+    #form_class = FileForm
+    fields = '__all__'
+    template_name = 'file_upload.html'
+    def form_valid(self, form):
+     return HttpResponseRedirect('/class/files')
    
+  
 
-#FILE LIST FUNCTION
-'''
-def file_list(request):
-    files = File.objects.all()
-    return render(request, 'file_list.html', { 'files' : files })
-'''
+
+#CLASS FILE UPLOAD
+class UploadFileView(CreateView):
+    model = File
+    form_class = FileForm
+    success_url = reverse_lazy('class_file_list')
+    template_name = 'file_upload.html'
+
 
 #FILE UPLOAD #getting required bug from this 
 def file_upload(request):
@@ -146,6 +156,8 @@ def file_upload(request):
         form = FileForm()
     return render(request, 'file_upload.html', { 'form' : form })
 
+
+
 #FILE DELETE FUNCTION
 def delete_file(request, pk):
     if request.method == 'POST':
@@ -153,12 +165,21 @@ def delete_file(request, pk):
         file.delete()
     return HttpResponseRedirect('/class/files')
 
-#CLASS FILE UPLOAD
-class UploadFileView(CreateView):
-    model = File
-    form_class = FileForm
-    success_url = reverse_lazy('class_file_list')
-    template_name = 'file_upload.html'
+
+
+#FILE LIST FUNCTION
+'''
+def file_list(request):
+    files = File.objects.all()
+    return render(request, 'file_list.html', { 'files' : files })
+'''
+
+
+
+
+
+
+
 
 
     
@@ -166,7 +187,6 @@ class UploadFileView(CreateView):
 
 #INTRO VIEW
 class Intro(TemplateView): #intro page that lets you learn about how to use app. may want to switch this to be the landing page later
- 
     template_name = "intro.html"
 
 #COMMENTS VIEW

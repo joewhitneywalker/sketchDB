@@ -39,7 +39,9 @@ HOME
                     <span class="text-muted">NO PREVIEW</span>   
                 {% endif %}
             </td>
-            <td>{{file.file_name}}</td>
+            <td>
+                <a href="{% url 'class_file_detail' file.pk %}">{{file.file_name}}</a>
+            </td> 
             <td>{{file.category}}</td>
             <td>{{file.season}}</td>
             <td>{{file.created_by}}</td>
@@ -48,6 +50,10 @@ HOME
                 </a>
             </td>
             <td>
+                <form method="post" action="{% url 'delete_file' file.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
+                </form>
             </td>
         </tr>
         {% endfor %}

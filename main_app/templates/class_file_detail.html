@@ -20,8 +20,10 @@
             <th>CREATED AT</th>
             <th>COMMENTS</th>
             <th>DOWNLOAD</th>
+            <th>UPDATE</th>
             <th>DELETE</th>
             
+
         </tr>
     </thead>
     <tboday>
@@ -42,6 +44,10 @@
             <td>{{file.comments}}</td>
             <td>
                 <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'class_file_update' file.pk %}" class="btn btn-primary btn-sm" target="_blank"> UPDATE
                 </a>
             </td>
             <td>
