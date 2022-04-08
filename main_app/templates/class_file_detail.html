@@ -1,14 +1,10 @@
 
 {% extends 'base.html' %}
 
-{% block title %}
-ALL FILES
-{% endblock %}
-
 {% block content %}
 
 {% block content_header %}
-    <h1>ALL FILES</h1>
+    <h3>{{file.file_name}}</h3>
 
   
 {% endblock %}
@@ -21,8 +17,11 @@ ALL FILES
             <th>CATEGORY</th>
             <th>SEASON</th>
             <th>CREATED BY</th>
+            <th>CREATED AT</th>
+            <th>COMMENTS</th>
             <th>DOWNLOAD</th>
             <th>DELETE</th>
+            
         </tr>
     </thead>
     <tboday>
@@ -35,12 +34,12 @@ ALL FILES
                     <span class="text-muted">NO PREVIEW</span>   
                 {% endif %}
             </td>
-            <td>
-                <a href="{% url 'class_file_detail' file.pk %}">{{file.file_name}}</a>
-            </td> 
+            <td>{{file.file_name}}</td> 
             <td>{{file.category}}</td>
             <td>{{file.season}}</td>
             <td>{{file.created_by}}</td>
+            <td>{{file.created_at}}</td>
+            <td>{{file.comments}}</td>
             <td>
                 <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
                 </a>

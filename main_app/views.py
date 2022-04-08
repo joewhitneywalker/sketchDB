@@ -17,6 +17,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
+from django.views.generic import DetailView
 
 
 # Create your views here.
@@ -81,6 +82,30 @@ def login_view(request):
 class FileListView(ListView):
     model = File
     template_name = 'class_file_list.html'
+    context_object_name = 'files'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        file_name = self.request.GET.get("file_name")
+        print(file_name)
+        if file_name != None:
+            context["files"] = File.objects.filter(file_name__icontains=file_name)#filters name 
+            context["header"] = f"Searching for {file_name}"
+        else:
+            context['files'] = File.objects.all()
+            context["header"] = "ALL FILES"
+        return context
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/class/files')
+
+
+class FileDetail(DetailView):
+    model = File
+    template_name = "class_file_detail.html"
     context_object_name = 'files'
 
     def get_context_data(self, **kwargs):
