@@ -14,7 +14,7 @@ urlpatterns = [
     path('class/files/', views.FileListView.as_view(), name='class_file_list'),#for class based file list
     path('class/files/upload/', views.UploadFileView.as_view(), name='class_file_upload'),
     path('class/files/<int:pk>/', views.delete_file, name="delete_file"), 
-    #path('files/<int:pk>/detail', views.FileDetail.as_view, name="delete_file"), #detail view
+    path('class/files/<int:pk>/detail', views.FileDetail.as_view(), name="class_file_detail"),
     path('user/<username>/', views.profile, name="profile"),#might be able to delete this later
     
     #LOG IN URLS
@@ -25,9 +25,6 @@ urlpatterns = [
    # path('template/files/', views.FileList.as_view(), name="template_file_list"),
     #path('upload/', views.upload, name="upload"),
    
-    
-
-
 
 
 ]
