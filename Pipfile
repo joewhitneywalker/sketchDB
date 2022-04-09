@@ -12,7 +12,7 @@ dj-database-url = "*"
 psycopg2 = "*"
 whitenoise = "*"
 django-crispy-forms = "*"
-django-crispy-forms = "*"
+pillow = "*"
 
 [dev-packages]
 
