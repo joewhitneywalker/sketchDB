@@ -151,7 +151,7 @@ def file_upload(request):
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('file_list')#redirects to list of files
+            return redirect('class_file_list')#redirects to list of files
     else:
         form = FileForm()
     return render(request, 'file_upload.html', { 'form' : form })
