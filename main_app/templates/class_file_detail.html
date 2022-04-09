@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tboday>
-        {% for file in files %}
+     
         <tr>
             <td>{% if file.preview %}
                     <img src="{{ file.preview.url }}" alt="{{ file.file_name }}" style="width:100px;">
@@ -57,7 +57,7 @@
                 </form>
             </td>
         </tr>
-        {% endfor %}
+        
     </tbody>
 </table>
 <hr>

@@ -105,9 +105,11 @@ class FileListView(ListView):
 class FileDetail(DetailView):
     model = File
     template_name = "class_file_detail.html"
-    context_object_name = 'files'
-
-    def get_context_data(self, **kwargs):
+    #context_object_name = 'files'
+    
+#COMMENTING OUT CODE TO RENDER SINGULAR FILE IN THE DETAIL
+'''
+def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         file_name = self.request.GET.get("file_name")
         print(file_name)
@@ -123,17 +125,23 @@ class FileDetail(DetailView):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        return HttpResponseRedirect('/class/files')
+        return HttpResponseRedirect('/class/files/')
 
+'''
+
+    
 #CLASS FILE UPDATE VIEW
 class FileUpdate(UpdateView):
     model = File
     #form_class = FileForm
     fields = '__all__'
     template_name = 'file_upload.html'
+    
     def form_valid(self, form):
-     return HttpResponseRedirect('/class/files')
-   
+            self.object = form.save(commit=False)
+            #self.object.user = self.request.user
+            self.object.save()
+            return HttpResponseRedirect('/class/files')
   
 
 
