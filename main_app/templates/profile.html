@@ -40,19 +40,19 @@ HOME
                 {% endif %}
             </td>
             <td>
-                <a href="{% url 'class_file_detail' file.pk %}">{{file.file_name}}</a>
+                <a href="{% url 'class_file_detail' file.pk %}" style="color: black;">{{file.file_name}}</a>
             </td> 
             <td>{{file.category}}</td>
             <td>{{file.season}}</td>
             <td>{{file.created_by}}</td>
             <td>
-                <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
+                <a href="{{file.pdf.url}}" class="btn btn-secondary btn-sm" target="_blank"> DOWNLOAD
                 </a>
             </td>
             <td>
                 <form method="post" action="{% url 'delete_file' file.pk %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
+                    <button type="submit" class="btn btn-secondary btn-sm">DELETE</button>
                 </form>
             </td>
         </tr>

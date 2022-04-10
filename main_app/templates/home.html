@@ -1,57 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block title %}
-HOME
+SketchDB Intro
 {% endblock %}
 
 {% block content %}
+<div class="container-md">
+<h3>INTRO </h3>
+<hr>
+<H3> WELCOME TO SKETCHDB!</H3>
+<P> TO SEARCH FOR A SKETCH, USE SEARCH BAR AT THE TOP OF THE APPLICATION. TYPE IN THE PC5 YOU WOULD LIKE TO SEARCH AND HIT ENTER. EVERY SKETCH ASSIGNED TO THAT PC5 WILL BE SHOWN WITH TAGS FOR SEASON AND CATEGORY.</P>
+<P>TO ADD SKETCHES TO YOUR LIBRARY, CLICK ON THE PC5 FILE NAME AND HIT "ADD TO LIBRARY" UNDER THE SKETCH INFORMATION. </P>
+<P>
+  TO NAVIGATE TO SKETCHES YOU HAVE ALREADY SAVED TO YOUR LIBRARY, SELECT "MY LIBRARY" ON THE LEFT HAND MENU.</P>
+<P>TO SEARCH BY SEASONAL WORKSPACE, CLICK THE DROP DOWN ARROW ON THE LEFT HAND MENU AND SELECT A SEASON AND CATEGORY. THIS WILL SHOW ALL SKETCHES THAT LIVE WITHIN THE SPECIFIED SEASON AND CATEGORY.</P>
+<P>TO UPLOAD A FILE, CLICK  "UPLOAD A FILE "  ON THE LEFT HAND MENU. THIS WILL REDIRECT YOU TO THE UPLOAD PAGE. PLEASE MAKE SURE TO FILL OUT THE INFORMATION EXACTLY AS STATED ON THAT PAGE.</P>
+<P>TO NAVIGATE BACK HOME, SELECT "HOME" ON THE LEFT HAND MENU, OR CLICK ON THE LEVIS ICON.</P>
+<P>TO SIGN OUT OR VIEW ACCOUNT, CLICK THE DROP DOWN ARROW BY YOUR PROFILE NAME.
 
-{% block content_header %}
-    <h3>HOME</h3>
+
+</P>
 {% endblock %}
 
-<hr></hr>
-
-<h3>RECENT FILES</h3>
-
-<table class="table mb-0">
-    <thead>
-        <tr>
-            <th>PREVIEW</th>
-            <th>FILE NAME</th>
-            <th>CATEGORY</th>
-            <th>SEASON</th>
-            <th>CREATED BY</th>
-            <th>DOWNLOAD</th>
-            <th>DELETE</th>
-        </tr>
-    </thead>
-    <tboday>
-        {% for file in files %}
-        <tr>
-            <td>{% if file.preview %}
-                    <img src="{{ file.preview.url }}" alt="{{ file.file_name }}" style="width:100px;">
-                {% else %} 
-                    <span class="text-muted">NO PREVIEW</span>   
-                {% endif %}
-            </td>
-            <td>{{file.file_name}}</td>
-            <td>{{file.category}}</td>
-            <td>{{file.season}}</td>
-            <td>{{file.created_by}}</td>
-            <td>
-                <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
-                </a>
-            </td>
-            <td>
-                <form method="post" action="{% url 'delete_file' file.pk %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endblock %}
 

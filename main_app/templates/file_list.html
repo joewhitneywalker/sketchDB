@@ -1,5 +1,7 @@
 
-{% extends 'base.html' %}
+{% extends 'base.html' %}   
+
+  
 
 {% block title %}
 ALL FILES
@@ -7,13 +9,39 @@ ALL FILES
 
 {% block content %}
 
-{% block content_header %}
-    <h1>ALL FILES</h1>
 
-  
+<header>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-stagrt">
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0">
+            <li><a href="/" class="nav-link px-2 link-secondary " style="color: grey; font-weight: bold; ;"></a></li>
+          </ul>
+          
+          <form>
+          <div class="d-flex flex-wrap align-items-center justify-content-center">
+            <input type="text" name="file_name" placeholder="SEARCH"/>
+                    <input type="submit" value="ENTER" style="color:white; background-color: grey;"><a href="{% url 'class_file_list' %}"></a>
+
+                   
+          </ul>
+    
+        </div>
+        
+      </div>
+     
+    </header>
+
+{% block content_header %}
+
+<h1>ALL FILES</h1>
+
+   
 {% endblock %}
 
 
+<br>
+<br>
 <table class="table mb-0">
     <thead>
         <tr>
@@ -37,19 +65,19 @@ ALL FILES
                 {% endif %}
             </td>
             <td>
-                <a href="{% url 'class_file_detail' file.pk %}">{{file.file_name}}</a>
+                <a href="{% url 'class_file_detail' file.pk %}" style="color: black">{{file.file_name}}</a>
             </td> 
             <td>{{file.category}}</td>
             <td>{{file.season}}</td>
             <td>{{file.created_by}}</td>
             <td>
-                <a href="{{file.pdf.url}}" class="btn btn-primary btn-sm" target="_blank"> DOWNLOAD
+                <a href="{{file.pdf.url}}" class="btn btn-secondary btn-sm" target="_blank"> DOWNLOAD
                 </a>
             </td>
             <td>
                 <form method="post" action="{% url 'delete_file' file.pk %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-sm">DELETE</button>
+                    <button type="submit" class="btn btn-secondary btn-sm">DELETE</button>
                 </form>
             </td>
         </tr>
@@ -58,7 +86,7 @@ ALL FILES
 </table>
 <hr>
 <p>
-    <a href="{% url 'file_upload' %}" class="btn btn-primary">UPLOAD A FILE</a>
+    <a href="{% url 'file_upload' %}" class="btn btn-secondary">UPLOAD A FILE</a>
 </p>
 {% endblock %}
 

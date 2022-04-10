@@ -106,7 +106,7 @@ class FileDetail(DetailView):
     model = File
     template_name = "class_file_detail.html"
     #context_object_name = 'files'
-    
+
 #COMMENTING OUT CODE TO RENDER SINGULAR FILE IN THE DETAIL
 '''
 def get_context_data(self, **kwargs):
