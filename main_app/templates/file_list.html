@@ -18,14 +18,55 @@ ALL FILES
             <li><a href="/" class="nav-link px-2 link-secondary " style="color: grey; font-weight: bold; ;"></a></li>
           </ul>
           
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0">
+            <label for="season">SEASON:</label>
+            <form>
+                 <select name="season_search">
+                    <option value="empty">            </option>
+                 {% for season in seasons %}
+                 {% if season %}
+                 <option value="{{season}}">{{season}}</option>
+                 {% else %}
+                 <p>NO SEASON AVAILABLE</p>
+                 {% endif %}
+                 {% empty %}
+                 <p>NO SEASON AVAILABLE</p>
+                 {% endfor %}
+                 <input type="submit"  value="FILTER"></input>
+                 </select>
+                
+             </form>
+            </ul>
+
+
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0">
+            <label for="category">CATEGORY:</label>
+            <form>
+                 <select name="category_search">
+                    <option value="empty">            </option>
+                 {% for category in categories %}
+                 {% if category %}
+                 <option value="{{category}}">{{category}}</option>
+                 {% else %}
+                 <p>NO CATEGORY AVAILABLE</p>
+                 {% endif %}
+                 {% empty %}
+                 <p>NO CATEGORY AVAILABLE</p>
+                 {% endfor %}
+                 <input type="submit"  value="FILTER"></input>
+                 </select>
+                
+             </form>
+            </ul>
+
+
           <form>
           <div class="d-flex flex-wrap align-items-center justify-content-center">
             <input type="text" name="file_name" placeholder="SEARCH"/>
-                    <input type="submit" value="ENTER" style="color:white; background-color: grey;"><a href="{% url 'class_file_list' %}"></a>
+                    <input type="submit" value="ENTER" style="color:white; background-color: grey;"><a href="{% url 'class_file_list' %}"></a>   
+          </form>   
 
-                   
-          </ul>
-    
         </div>
         
       </div>

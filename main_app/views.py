@@ -86,20 +86,38 @@ class FileListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         file_name = self.request.GET.get("file_name")
+        season = self.request.GET.get("season_search")
+        category = self.request.GET.get("category_search")
         print(file_name)
         if file_name != None:
             context["files"] = File.objects.filter(file_name__icontains=file_name)#filters name 
             context["header"] = f"Searching for {file_name}"
+            context['seasons'] =File.objects.values_list('season', flat=True).distinct()
+            context['categories'] =File.objects.values_list('category', flat=True).distinct()
         else:
             context['files'] = File.objects.all()
+            context['seasons'] =File.objects.values_list('season', flat=True).distinct()
+            context['categories'] =File.objects.values_list('category', flat=True).distinct()
             context["header"] = "ALL FILES"
+        if season != None:
+            context["files"] = File.objects.filter(season__icontains=season)#filters name 
+        if category:
+            context["files"] = File.objects.filter(category__icontains=category)#filters name 
+ 
+ 
         return context
 
-    def form_valid(self, form):
+def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect('/class/files')
+
+
+
+    
+
+
 
 #CLASS FILE DETAIL VIEW
 class FileDetail(DetailView):
@@ -181,6 +199,21 @@ def file_list(request):
     files = File.objects.all()
     return render(request, 'file_list.html', { 'files' : files })
 '''
+
+
+#CATEGORY VIEW
+
+
+
+
+
+
+
+
+
+#SEASON VIEW
+
+
 
 
 
