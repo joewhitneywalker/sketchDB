@@ -13,6 +13,7 @@ psycopg2 = "*"
 whitenoise = "*"
 django-crispy-forms = "*"
 pillow = "*"
+django-bootstrap-icons = "*"
 
 [dev-packages]
 
