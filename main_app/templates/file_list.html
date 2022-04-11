@@ -10,6 +10,14 @@ ALL FILES
 {% block content %}
 
 
+
+{% block content_header %}
+<h1>ALL FILES</h1>
+{% endblock %}
+<hr>
+<br>
+
+
 <header>
     <div class="container-fluid">
       <div class="container">
@@ -19,10 +27,10 @@ ALL FILES
           </ul>
           
           <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0">
-            <label for="season">SEASON:</label>
+            <label for="season" style="font-size: 18px"></label>
             <form>
-                 <select name="season_search">
-                    <option value="empty">            </option>
+                 <select name="season_search" style="min-height: 30px; border:none">
+                    <option value="empty">SEASON</option>
                  {% for season in seasons %}
                  {% if season %}
                  <option value="{{season}}">{{season}}</option>
@@ -32,7 +40,7 @@ ALL FILES
                  {% empty %}
                  <p>NO SEASON AVAILABLE</p>
                  {% endfor %}
-                 <input type="submit"  value="FILTER"></input>
+                 <input type="submit"  value="FILTER" style="color:white; background:#6E757D; border-radius: 5px; border: 1px solid #cccccc; min-height: 30px;"></input>
                  </select>    
              </form>
             </ul>
@@ -40,10 +48,10 @@ ALL FILES
 
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-5 justify-content-center mb-md-0">
-            <label for="category">CATEGORY:</label>
+            <label for="category"></label>
             <form>
-                 <select name="category_search">
-                    <option value="empty">            </option>
+                 <select name="category_search" style="min-height: 30px; border:none">
+                    <option value="empty">CATEGORY</option>
                  {% for category in categories %}
                  {% if category %}
                  <option value="{{category}}">{{category}}</option>
@@ -53,7 +61,7 @@ ALL FILES
                  {% empty %}
                  <p>NO CATEGORY AVAILABLE</p>
                  {% endfor %}
-                 <input type="submit"  value="FILTER"></input>
+                 <input type="submit"  value="FILTER" style="color:white; background:#6E757D; border-radius: 5px; border: 1px solid #cccccc; min-height: 30px;"></input>
                  </select>
                 
              </form>
@@ -62,8 +70,8 @@ ALL FILES
 
           <form>
           <div class="d-flex flex-wrap align-items-center justify-content-center">
-            <input type="text" name="file_name" placeholder="SEARCH"/>
-                    <input type="submit" value="ENTER" style="color:white; background-color: grey;"><a href="{% url 'class_file_list' %}"></a>   
+            <input type="text" name="file_name" style="border-radius: 5px;" placeholder="SEARCH"/>
+                    <input type="submit" value="ENTER" style="color:white; background:#6E757D; border-radius: 5px; border: 1px solid #cccccc; min-height: 30px;"><a href="{% url 'class_file_list' %}"></a>   
           </form>   
 
         </div>
@@ -71,13 +79,10 @@ ALL FILES
       </div>
      
     </header>
+    <br>
+    <hr>
 
-{% block content_header %}
 
-<h1>ALL FILES</h1>
-
-   
-{% endblock %}
 
 
 <br>
