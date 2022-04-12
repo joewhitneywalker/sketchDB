@@ -102,7 +102,7 @@ FILE DETAIL VIEW WITH TIME STAMP FOR VERSION HISTORY AND COMMENTS
 ![Screen Shot 2022-04-11 at 6 23 42 PM](https://user-images.githubusercontent.com/92687151/162860032-d42e950c-91a6-4294-a394-1ee5d75f98c7.png)
 
 FILE UPLOAD/UPDATE PAGE (CURRENTLY IN UPDATE VIEW)
-![Screen Shot 2022-04-11 at 6 23 51 PM](https://user-images.githubusercontent.com/92687151/162860130-0262f095-634e-489f-b8c5-45d8a373c39e.png)
+![Screen Shot 2022-04-11 at 6 33 48 PM](https://user-images.githubusercontent.com/92687151/162860997-a4967466-70cd-4852-b3fc-7ae19dc4f30b.png)
 
 
 -------------------------------------
