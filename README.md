@@ -67,7 +67,7 @@ BRAIN STORM / USER STORIES:
 
 
 -------------------------------------
-☑PROJECT WIREFRAME:
+📝 PROJECT WIREFRAME:
 [PROJECT 4 WIREFRAME.pdf](https://github.com/joewhitneywalker/sketchDB/files/8385941/PROJECT.4.WIREFRAME.pdf)
 
 
