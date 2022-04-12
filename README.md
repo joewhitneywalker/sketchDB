@@ -88,6 +88,18 @@ MY FAVORIETE PIECE OF CODE IS THIS FILE LIST FUNCTION WHICH RENDERS OUT ALL THE 
 ![Screen Shot 2022-04-11 at 5 50 20 PM](https://user-images.githubusercontent.com/92687151/162856640-4a044c8a-57b1-4dfe-aba8-4c53d397859b.png)
 -------------------------------------
 PREVIEW:
+INTRO PAGE
+![Screen Shot 2022-04-11 at 6 23 19 PM](https://user-images.githubusercontent.com/92687151/162859932-5a26d75f-03aa-4d0d-8890-e1d9bfa988f4.png)
+
+FILE LIST/ALL FILES VIEW WITH FILTERS AND SEARCH BAR, ABILITY TO DOWNLOAD OR DELETE FROM THIS VIEW
+![Screen Shot 2022-04-11 at 6 23 34 PM](https://user-images.githubusercontent.com/92687151/162859963-2ebfb135-2ca2-461d-ba9e-211894062cef.png)
+
+FILE DETAIL VIEW WITH TIME STAMP FOR VERSION HISTORY AND COMMENTS
+![Screen Shot 2022-04-11 at 6 23 42 PM](https://user-images.githubusercontent.com/92687151/162860032-d42e950c-91a6-4294-a394-1ee5d75f98c7.png)
+
+FILE UPLOAD/UPDATE PAGE (CURRENTLY IN UPDATE VIEW)
+![Screen Shot 2022-04-11 at 6 23 51 PM](https://user-images.githubusercontent.com/92687151/162860130-0262f095-634e-489f-b8c5-45d8a373c39e.png)
+
 
 -------------------------------------
 THANK YOU FOR READING MY README :)
