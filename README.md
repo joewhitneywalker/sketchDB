@@ -3,7 +3,7 @@
 ------------------------------
 
 DESCRIPTION OF PROJECT:
-sketchDB is a web-based application where users will be able to upload pdf versions of their sketches to store in the database. This creates an opportunity to use sketchDB as a single source of data management to keep all you and your colleague's sketch files in one place.
+**sketchDB is a web-based application where users will be able to upload pdf versions of their sketches to store in the database. This creates an opportunity to use sketchDB as a single source of data management to keep all you and your colleague's sketch files in one place.**
 ----------------------------------
 
 LINKS:
