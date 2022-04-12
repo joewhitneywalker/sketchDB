@@ -7,6 +7,7 @@
 LINKS:
 
 [GITHUB REPO](https://github.com/joewhitneywalker/sketchDB)
+-------------------------------
 [HEROKU](https://jwsketchdb.herokuapp.com/)
 
 --------------------------------------
